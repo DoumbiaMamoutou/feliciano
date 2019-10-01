@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import models  as art
 from configuration import models as config
 from django.core.paginator import Paginator 
-
+from . import forms
 # Create your views here.
 
 def blog(request):
@@ -52,9 +52,39 @@ def list_categorie(request,category):
 	return render('blog')
 
 def list_date(request,date):
-	return render(request, 'pages/list_date.html')
+	if request.method == 'GET':
+		query=request.GET.get('q',False)
+		p = request.GET.get('p',1)
+		if q:
+			articles = art.Article.objects.filter(titre__contains=q).filter(date_add=date)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+		else:
+			articles = art.Articles.objects.filter(date_add=date)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+	return redirect('blog')
 
 def list_tag(request,tag):
-	return render(request, 'pages/list_tag.html')
+	if request.method == 'GET':
+		query=request.GET.get('q',False)
+		p = request.GET.get('p',1)
+		if q:
+			articles = art.Article.objects.filter(titre__contains=q).filter(tag__contains=tag)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+		else:
+			articles = art.Articles.objects.filter(tag__contains=tag)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+	return redirect('blog')
 def comment(request):
-	return ''
+	if request.method == 'POST':
+		comment = forms.CommentForm(request.POST)
+		if comment.is_valid:
+			comment.save()
+	return redirect('blog')
