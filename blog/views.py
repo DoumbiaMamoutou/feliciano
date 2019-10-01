@@ -10,12 +10,14 @@ def blog(request):
 	if request.method == 'GET':
 		page=request.GET.get('page',1)
 	articles = paginator.page(page)
+	lister = Article.objects.filter(status=True)
 	data = {
 		'category':art.Category.objects.filter(status=True),
 		'configuration':config.MainConfig.objects.filter(status=True)[:1],
 		'working_hour':config.WorkingHour.objects.filter(status=True),
 		'instagram':config.Instagram.objects.filter(status=True)[:1],
 		'articles':articles,
+		'lister':lister,
 
 	}
 	return render(request, 'pages/blog.html')
