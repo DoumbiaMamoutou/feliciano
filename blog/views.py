@@ -30,4 +30,29 @@ def single(request,id):
 		'art_popu':art.Article.objects.select_related('comment').order_by('comment__count'),
 		'tags':art.Tags.objects.filter(status=True),
 	}
+
 	return render(request,'pages/single.html')
+
+def list_categorie(request,category):
+	if request.method == 'GET':
+		query=request.GET.get('q',False)
+		p = request.GET.get('p',1)
+		if q:
+			articles = art.Article.objects.filter(titre__contains=q).filter(category=category)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+		else:
+			articles = art.Articles.objects.filter(category=category)
+			art =Paginator(articles,10)
+			art = paginator.page(p)
+			return render(request, 'pages/list_categorie.html',art)
+	return render('blog')
+
+def list_date(request,date):
+	return render(request, 'pages/list_date.html')
+
+def list_tag(request,tag):
+	return render(request, 'pages/list_tag.html')
+def comment(request):
+	return ''

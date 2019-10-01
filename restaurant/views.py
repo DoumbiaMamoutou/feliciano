@@ -46,11 +46,3 @@ def about(request):
 	return render(request, 'pages/about.html')
 
 
-def list_categorie(request):
-    return render(request, 'pages/list_categorie.html')
-
-def list_date(request):
-    return render(request, 'pages/list_date.html')
-
-def list_tag(request):
-    return render(request, 'pages/list_tag.html')
