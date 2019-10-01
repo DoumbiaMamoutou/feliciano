@@ -1,5 +1,6 @@
 from django import forms
-from .models import *
+from .models import Message,Newsletter
+from restaurant.models import Reservation
 
 class ContactForm(forms.ModelForm):
 	class Meta:
@@ -11,3 +12,9 @@ class NewsletterForm(forms.ModelForm):
 	class Meta:
 		model = Newsletter
 		fields = ('email',)
+
+class ReservationForm(forms.ModelForm):
+     class Meta:
+         model = Reservation
+         fields = ['name', 'email', 'phone', 'date', 'person']
+

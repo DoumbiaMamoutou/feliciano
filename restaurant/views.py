@@ -45,8 +45,6 @@ def about(request):
 	}
 	return render(request, 'pages/about.html')
 
-def reservation(request):
-    return render(request, 'pages/reservation.html')
 
 def list_categorie(request):
     return render(request, 'pages/list_categorie.html')
