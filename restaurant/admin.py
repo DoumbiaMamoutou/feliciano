@@ -26,6 +26,7 @@ class PlatAdmin(admin.ModelAdmin):
 
     list_display = (
         'id',
+        'name',
         'prix',
         'image',
         'category',

@@ -20,7 +20,7 @@ class Category(models.Model):
 
 class Plat(models.Model):
 	# TODO: Define fields here
-	name = models.CharField(max_length=100),
+	name = models.CharField(max_length=100,null=True)
 	prix = models.PositiveIntegerField()
 	image = models.ImageField(upload_to='restaurant/plat')
 	ingredient = models.ManyToManyField('Ingredient',related_name='plat_ingredient')
@@ -88,8 +88,8 @@ class Ingredient(models.Model):
 	date_add = models.DateTimeField(auto_now_add=True)
 	date_upd = models.DateTimeField(auto_now=True)
 	class Meta:
-	    verbose_name = "Ingrdient"
-	    verbose_name_plural = "Ingrdients"
+	    verbose_name = "Ingredient"
+	    verbose_name_plural = "Ingredients"
 
 	def __str__(self):
 	    return '{}'.format(self.name)
