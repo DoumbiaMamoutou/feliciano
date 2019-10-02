@@ -108,7 +108,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
     list_display = ('imageAuthor', 'user', 'description')
     list_filter = ('user', 'id', 'user', 'description')
-     def imageAuthor(self, obj):
+    def imageAuthor(self, obj):
         return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
 
 

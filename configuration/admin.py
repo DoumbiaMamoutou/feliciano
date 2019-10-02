@@ -99,7 +99,7 @@ class InstagramAdmin(admin.ModelAdmin):
 
     list_display = (
         'Image1',
-        'Image2,
+        'Image2',
         'Image3',
         'Image4',
         'Image5',
