@@ -1,21 +1,18 @@
-from django.contrib import admin
-from django.utils.safestring import mark_safe
 
 # Register your models here.
 # vim: set fileencoding=utf-8 :
 from django.contrib import admin
-
+from django.utils.safestring import mark_safe
 from . import models
 
 
 class ArticleAdmin(admin.ModelAdmin):
 
     list_display = (
-        'id',
+        'imageArticle',
         'titre',
         'description',
         'contenu',
-        'image',
         'category',
         'author',
         'status',
@@ -33,30 +30,32 @@ class ArticleAdmin(admin.ModelAdmin):
         'titre',
         'description',
         'contenu',
-        'image',
         'category',
         'author',
         'status',
         'date_add',
         'date_upd',
     )
+    def imageArticle(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
+    
     raw_id_fields = ('tag',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'titre', 'image', 'status', 'date_add', 'date_upd')
+    list_display = ('imageCategory', 'titre', 'status', 'date_add', 'date_upd')
     list_filter = (
         'status',
         'date_add',
         'date_upd',
-        'id',
         'titre',
-        'image',
         'status',
         'date_add',
         'date_upd',
     )
+    def imageCategory(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
 
 
 class TagAdmin(admin.ModelAdmin):
@@ -77,9 +76,8 @@ class TagAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = (
-        'id',
+        'imageComment',
         'article',
-        'image',
         'message',
         'name',
         'email',
@@ -93,9 +91,7 @@ class CommentAdmin(admin.ModelAdmin):
         'status',
         'date_add',
         'date_upd',
-        'id',
         'article',
-        'image',
         'message',
         'name',
         'email',
@@ -104,13 +100,18 @@ class CommentAdmin(admin.ModelAdmin):
         'date_add',
         'date_upd',
     )
+    def imageComment(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
+    
     search_fields = ('name',)
 
 
 class AuthorAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'user', 'image', 'description')
-    list_filter = ('user', 'id', 'user', 'image', 'description')
+    list_display = ('imageAuthor', 'user', 'description')
+    list_filter = ('user', 'id', 'user', 'description')
+    def imageAuthor(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
 
 
 def _register(model, admin_class):
