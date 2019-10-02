@@ -1,24 +1,28 @@
 from django.shortcuts import render,redirect
 from . import models  as art
+from .models import *
 from configuration import models as config
 from django.core.paginator import Paginator 
 from . import forms
 # Create your views here.
 
 def blog(request):
-	paginator =Paginator(art.Article.objects.filter(status=True),6)
-	if request.method == 'GET':
-		page=request.GET.get('page',1)
-	articles = paginator.page(page)
+    
+	# paginator =Paginator(art.Article.objects.filter(status==True),6)
+	# if request.method == 'GET':
+	# 	page=request.GET.get('page',1)
+	# articles = paginator.page(page)
+	lister = Article.objects.filter(status=True)
 	data = {
-		'category':art.Category.objects.filter(status=True),
-		'configuration':config.MainConfig.objects.filter(status=True)[:1],
-		'working_hour':config.WorkingHour.objects.filter(status=True),
-		'instagram':config.Instagram.objects.filter(status=True)[:1],
-		'articles':articles,
+		# 'category':art.Category.objects.filter(status=True),
+		# 'configuration':config.MainConfig.objects.filter(status=True)[:1],
+		# 'working_hour':config.WorkingHour.objects.filter(status=True),
+		# 'instagram':config.Instagram.objects.filter(status=True)[:1],
+		# 'articles':articles,
+		'lister':lister,
 
 	}
-	return render(request, 'pages/blog.html')
+	return render(request, 'pages/blog.html',data)
 
 def single(request,id):
 	data={
