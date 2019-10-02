@@ -21,6 +21,7 @@ class Article(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.titre,self.author)
+    
 
 class Category(models.Model):
     # TODO: Define fields here

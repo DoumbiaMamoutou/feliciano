@@ -14,7 +14,7 @@ def home(request):
 		'chef':restau.Chef.objects.filter(status=True)[:4],
 		'article':art.Article.objects.order_by('-date_add')[:3],
 	}
-	return render(request, 'pages/index.html',data)
+	return render(request, 'pages/index.html', data)
 
 def menu(request):
 	p = request.GET.get('page',1)
