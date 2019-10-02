@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'restaurant.apps.RestaurantConfig',
     'configuration.apps.ConfigurationConfig',
     'contact.apps.ContactConfig',
+    'statictiques.apps.StatictiquesConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'configuration.context_processors.get_config',
+                'statictiques.context_processors.visitor_ip_address',
             ],
         },
     },
