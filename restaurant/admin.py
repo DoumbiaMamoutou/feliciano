@@ -54,7 +54,7 @@ class ChefAdmin(admin.ModelAdmin):
 
     list_display = (
         'id',
-        'user',
+        'first_name',
         'image',
         'poste',
         'status',
@@ -62,13 +62,11 @@ class ChefAdmin(admin.ModelAdmin):
         'date_upd',
     )
     list_filter = (
-        'user',
         'poste',
         'status',
         'date_add',
         'date_upd',
         'id',
-        'user',
         'image',
         'poste',
         'status',

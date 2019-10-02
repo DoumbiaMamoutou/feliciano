@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/filebrowser/', site.urls),
     path('restaurant/',include('restaurant.urls')),
     path('contact',include('contact.urls')),
+    path('fake/',include('configuration.urls')),
 ]
 
 

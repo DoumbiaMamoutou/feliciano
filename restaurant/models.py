@@ -38,7 +38,8 @@ class Plat(models.Model):
 
 class Chef(models.Model):
 	# TODO: Define fields here
-	user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='chef')
+	first_name = models.CharField(max_length=50,null=True)
+	last_name = models.CharField(max_length=50,null=True)
 	image = models.ImageField(upload_to='restaurant/chef')
 	poste = models.ForeignKey('Poste',on_delete=models.CASCADE,related_name='poste_chef')
 	social = models.ManyToManyField(Social,related_name='social_chef')
@@ -50,7 +51,7 @@ class Chef(models.Model):
 	    verbose_name_plural = "Chefs"
 
 	def __str__(self):
-	    return '{}'.format(self.user.username)
+	    return '{} {}'.format(self.first_name,self.last_name)
 
 class Reservation(models.Model):
 	# TODO: Define fields here

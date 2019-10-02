@@ -149,11 +149,11 @@ class AboutConfig(models.Model):
 	date_add = models.DateTimeField(auto_now_add=True)
 	date_upd = models.DateTimeField(auto_now=True)
 	class Meta:
-	    verbose_name = "AboutConfig"
-	    verbose_name_plural = "AboutConfigs"
+		verbose_name = "AboutConfig"
+		verbose_name_plural = "AboutConfigs"
 
 	def __str__(self):
-	    return '{}'.format(self.titre)
+		return '{}'.format(self.titre)
 
 
     
@@ -166,11 +166,11 @@ class ServiceConfig(models.Model):
 	date_add = models.DateTimeField(auto_now_add=True)
 	date_upd = models.DateTimeField(auto_now=True)
 	class Meta:
-	    verbose_name = "ServiceConfig"
-	    verbose_name_plural = "ServiceConfigs"
+		verbose_name = "ServiceConfig"
+		verbose_name_plural = "ServiceConfigs"
 
 	def __str__(self):
-	    return '{}'.format(self.titre)
+		return '{}'.format(self.titre)
 
 
 
@@ -184,8 +184,8 @@ class Temoin(models.Model):
 	date_add = models.DateTimeField(auto_now_add=True)
 	date_upd = models.DateTimeField(auto_now=True)
 	class Meta:
-	    verbose_name = "Temoin"
-	    verbose_name_plural = "Temoins"
+		verbose_name = "Temoin"
+		verbose_name_plural = "Temoins"
 
 	def __str__(self):
 	    return '{}'.format(self.name)
