@@ -17,9 +17,6 @@ def blog(request):
 		articles = paginator.page(page)
 		data = {
 			'category':Category.objects.filter(status=True),
-			'configuration':config.MainConfig.objects.filter(status=True)[:1],
-			'working_hour':config.WorkingHour.objects.filter(status=True),
-			'instagram':config.Instagram.objects.filter(status=True)[:1],
 			'articles':articles,
 
 		}
