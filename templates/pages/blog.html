@@ -6,7 +6,7 @@
             <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate text-center mb-4">
                 <h1 class="mb-2 bread">Blog</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
             </div>
             </div>
             </div>
@@ -14,46 +14,43 @@
 		
 		<section class="ftco-section bg-light">
 			<div class="container">
-				<div class="row">
-         
-           {% for lis in lister %} 
-           {% if forloop.counter <= 3 %}
-          <div class="col-md-4 ftco-animate">
-          
-            <div class="blog-entry">
-              
-              <a href="blog-single.html" class="block-20" style="background-image: url('{{ lis.image.url }}');">
-              </a>
-              <div class="text pt-3 pb-4 px-4">
-                <div class="meta">
-                  <div><a href="#">Sept. 06, 2019</a></div>
-                  <div><a href="#">{{ lis.author }}</a></div>
+			<div class="row">
+                
+                {% for art in articles %}
+                <div class="col-md-4 ftco-animate">
+                    <div class="blog-entry">
+                    
+                    <a href="blog-single.html" class="block-20" style="background-image: url('{{ art.image.url }}');">
+                    </a>
+                    <div class="text pt-3 pb-4 px-4">
+                        <div class="meta">
+                        <div><a href="{% url 'single' art.id %}">{{ art.date_add|date:'M d, Y' }}</a></div>
+                        <div><a href="{% url 'single' art.id %}">{{ art.author }}</a></div>
+                        </div>
+                        <h3 class="heading"><a href="{% url 'single' art.id %}">{{ art.titre }}</a></h3>
+                        <p class="clearfix">
+                        <a href="{% url 'single' art.id %} " class="float-left read">Read more</a>
+                        <a href="{% url 'single' art.id %}" class="float-right meta-chat"><span class="icon-chat"></span> {{ art.article_comment|length }}</a>
+                        </p>
+                    </div>
+                    </div>
                 </div>
-                <h3 class="heading"><a href="#">{{ lis.titre }}</a></h3>
-                <p class="clearfix">
-                  <a href="#" class="float-left read">Read more</a>
-                  <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
-                </p>
-              </div>
-             </div>
-             </div>
-             {% endif %}
-             {% endfor %}
-          </div>
-           
-          
+            {% endfor %}
+            </div>
             </div>
             <div class="row no-gutters my-5">
             <div class="col text-center">
                 <div class="block-27">
                 <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
+                    {% if articles.has_previous %}
+                    <li><a href="?page=1">&laquo;</a></li>
+                    <li><a href="?page={{ articles.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+                    <li class="active">{{ articles.number }} of {{ articles.paginator.num_pages }}</li>
+                    {% if articles.has_next %}
+                    <li><a href="?page={{ articles.next_page_number }}">&gt;</a></li>
+                    <li><a href="?page={{ articles.paginator.num_pages }}">&raquo;</a></li>
+                    {% endif %}
                 </ul>
                 </div>
             </div>

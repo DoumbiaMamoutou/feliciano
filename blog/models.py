@@ -20,8 +20,7 @@ class Article(models.Model):
         verbose_name_plural = "Articles"
 
     def __str__(self):
-        return '{} {}'.format(self.titre,self.author)
-    
+        return '{}'.format(self.id)
 
 class Category(models.Model):
     # TODO: Define fields here
@@ -54,7 +53,7 @@ class Tag(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE,related_name='article_comment')
-    image = models.ImageField(upload_to='blog/comment',default='profile/default.png')
+    image = models.ImageField(upload_to='blog/comment',default='profile/default.jpg')
     message = models.TextField()
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=255)

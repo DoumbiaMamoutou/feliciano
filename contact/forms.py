@@ -5,7 +5,7 @@ from restaurant.models import Reservation
 class ContactForm(forms.ModelForm):
 	class Meta:
 		model= Message
-		fields = ('name', 'email', 'sujet', 'message')
+		fields = ['name', 'email', 'sujet', 'message']
 
 
 class NewsletterForm(forms.ModelForm):
@@ -15,6 +15,6 @@ class NewsletterForm(forms.ModelForm):
 
 class ReservationForm(forms.ModelForm):
      class Meta:
-         model = Reservation
-         fields = ['name', 'email', 'phone', 'date', 'person']
+        model = Reservation
+        fields = ['name', 'email', 'phone','time' ,'date', 'person']
 

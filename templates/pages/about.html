@@ -6,7 +6,7 @@
             <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate text-center mb-4">
                 <h1 class="mb-2 bread">About</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About <i class="ion-ios-arrow-forward"></i></span></p>
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About <i class="ion-ios-arrow-forward"></i></span></p>
             </div>
             </div>
             </div>
@@ -17,18 +17,18 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7 d-flex">
-						<div class="img img-1 mr-md-2" style="background-image: url(/static/images/about.jpg);"></div>
-						<div class="img img-2 ml-md-2" style="background-image: url(/static/images/about-1.jpg);"></div>
+						<div class="img img-1 mr-md-2" style="background-image: url({{about.image1.url}});"></div>
+						<div class="img img-2 ml-md-2" style="background-image: url({{about.image2.url}});"></div>
 					</div>
 					<div class="col-md-5 wrap-about pt-5 pt-md-5 pb-md-3 ftco-animate">
-	          <div class="heading-section mb-4 my-5 my-md-0">
-	          	<span class="subheading">About</span>
-	            <h2 class="mb-4">Feliciano Restaurant</h2>
+	        <div class="heading-section mb-4 my-5 my-md-0">
+	        <span class="subheading">About</span>
+	        <h2 class="mb-4">{{about.titre}}</h2>
 	          </div>
-	          <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-						<pc class="time">
-							<span>Mon - Fri <strong>8 AM - 11 PM</strong></span>
-							<span><a href="#">+ 1-978-123-4567</a></span>
+	        {{about.content|safe}}
+						<p class="time">
+							<span>{{ about.open_hour }}</span>
+							<span><a href="#">{{about.phone}}</a></span>
 						</p>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                         <div class="text">
-                            <strong class="number" data-number="18">0</strong>
+                            <strong class="number" data-number="{{ about.yoe }}">0</strong>
                             <span>Years of Experienced</span>
                         </div>
                         </div>
@@ -52,7 +52,7 @@
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                         <div class="text">
-                            <strong class="number" data-number="100">0</strong>
+                            <strong class="number" data-number="{{about.menu}}">0</strong>
                             <span>Menus/Dish</span>
                         </div>
                         </div>
@@ -60,7 +60,7 @@
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                         <div class="text">
-                            <strong class="number" data-number="50">0</strong>
+                            <strong class="number" data-number="{{about.satff}}">0</strong>
                             <span>Staffs</span>
                         </div>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0 d-flex justify-content-center counter-wrap ftco-animate">
                         <div class="block-18">
                         <div class="text">
-                            <strong class="number" data-number="15000">0</strong>
+                            <strong class="number" data-number="{{about.happy_customer}}">0</strong>
                             <span>Happy Customers</span>
                         </div>
                         </div>
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="col-md-3 text-center text-md-left">
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <p>{{about.description}}</p>
             </div>
             </div>
             </div>
@@ -91,39 +91,19 @@
             </div>
             </div>
             <div class="row">
+                {% for serve in service %}
             <div class="col-md-4 d-flex align-self-stretch ftco-animate text-center">
                 <div class="media block-6 services d-block">
                 <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-cake"></span>
+                        <span class="{{ serve.icone }}"></span>
                 </div>
                 <div class="media-body p-2 mt-3">
-                    <h3 class="heading">Birthday Party</h3>
-                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                    <h3 class="heading">{{serve.titre}}</h3>
+                    <p>{{serve.description}}</p>
                 </div>
                 </div>      
             </div>
-            <div class="col-md-4 d-flex align-self-stretch ftco-animate text-center">
-                <div class="media block-6 services d-block">
-                <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-meeting"></span>
-                </div>
-                <div class="media-body p-2 mt-3">
-                    <h3 class="heading">Business Meetings</h3>
-                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-                </div>
-                </div>    
-            </div>
-            <div class="col-md-4 d-flex align-self-stretch ftco-animate text-center">
-                <div class="media block-6 services d-block">
-                <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-tray"></span>
-                </div>
-                <div class="media-body p-2 mt-3">
-                    <h3 class="heading">Wedding Party</h3>
-                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-                </div>
-                </div>      
-            </div>
+            {% endfor %}
             </div>
                 </div>
         </section>
@@ -137,82 +117,26 @@
             </div>
             </div>	
 				<div class="row">
+                    {% for c in chef %}
 					<div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
-							<div class="img" style="background-image: url(/static/images/chef-4.jpg);"></div>
+							<div class="img" style="background-image: url({{c.image.url}});"></div>
 							<div class="text pt-4">
-								<h3>John Smooth</h3>
-								<span class="position mb-2">Restaurant Owner</span>
+								<h3>{{c}}</h3>
+								<span class="position mb-2">{{c.job}}</span>
 								<!-- <p>A small river named Duden flows by their place and supplies</p> -->
 								<div class="faded">
 									<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
 									<ul class="ftco-social d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                                        {% for soc in c.social.all %}
+                                            <li class="ftco-animate"><a href="{{soc.lien}}"><span class="{{ soc.font }}"></span></a></li>
+                                        {% endfor %}
 		              </ul>
 	              </div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(/static/images/chef-2.jpg);"></div>
-							<div class="text pt-4">
-								<h3>Rebeca Welson</h3>
-								<span class="position mb-2">Head Chef</span>
-								<!-- <p>A small river named Duden flows by their place and supplies</p> -->
-								<div class="faded">
-									<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-									<ul class="ftco-social d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(/static/images/chef-3.jpg);"></div>
-							<div class="text pt-4">
-								<h3>Kharl Branyt</h3>
-								<span class="position mb-2">Chef</span>
-								<!-- <p>A small river named Duden flows by their place and supplies</p> -->
-								<div class="faded">
-									<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-									<ul class="ftco-social d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 ftco-animate">
-						<div class="staff">
-							<div class="img" style="background-image: url(/static/images/chef-1.jpg);"></div>
-							<div class="text pt-4">
-								<h3>Luke Simon</h3>
-								<span class="position mb-2">Chef</span>
-								<!-- <p>A small river named Duden flows by their place and supplies</p> -->
-								<div class="faded">
-									<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-									<ul class="ftco-social d-flex">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul>
-	              </div>
-							</div>
-						</div>
-					</div>
+                    </div>
+                    {% endfor %}
 				</div>
 			</div>
 		</section>
@@ -225,7 +149,7 @@
 	          	<span class="subheading">Book a table</span>
 	            <h2 class="mb-4">Make Reservation</h2>
 	          </div>
-            <form action="" method="POST">
+            <form action="{% url 'reservation' %}" method="POST">
               {% csrf_token %}
               <div class="row">
                 <div class="col-md-6">
@@ -263,12 +187,12 @@
                     <label for="">Person</label>
                     <div class="select-wrap one-third">
                       <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      <select name="" id="" name="person" class="form-control">
-                        <option value="">Person</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4+</option>
+                      <select  id="" name="person" class="form-control">
+                        <option value="0">Person</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4+</option>
                       </select>
                     </div>
                   </div>
@@ -297,76 +221,22 @@
                 <div class="row ftco-animate justify-content-center">
                 <div class="col-md-12">
                 <div class="carousel-testimony owl-carousel ftco-owl">
-                <div class="item">
-                    <div class="testimony-wrap text-center pb-5">
-                    <div class="user-img mb-4" style="background-image: url(/static/images/person_1.jpg)">
-                        <span class="quote d-flex align-items-center justify-content-center">
-                        <i class="icon-quote-left"></i>
-                        </span>
-                    </div>
-                    <div class="text p-3">
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p class="name">Jason McClean</p>
-                        <span class="position">Customer</span>
-                    </div>
-                    </div>
-                    </div>
+                    {% for t in temoin %}
                     <div class="item">
                     <div class="testimony-wrap text-center pb-5">
-                    <div class="user-img mb-4" style="background-image: url(/static/images/person_2.jpg)">
+                    <div class="user-img mb-4" style="background-image: url({{t.image.url}})">
                         <span class="quote d-flex align-items-center justify-content-center">
                         <i class="icon-quote-left"></i>
                         </span>
                     </div>
                     <div class="text p-3">
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p class="name">Mark Stevenson</p>
-                        <span class="position">Customer</span>
+                        <p class="mb-4">{{ t.comment}}</p>
+                        <p class="name">{{t.name}}</p>
+                        <span class="position">{{t.job}}</span>
                     </div>
                     </div>
                     </div>
-                    <div class="item">
-                    <div class="testimony-wrap text-center pb-5">
-                    <div class="user-img mb-4" style="background-image: url(/static/images/person_3.jpg)">
-                        <span class="quote d-flex align-items-center justify-content-center">
-                        <i class="icon-quote-left"></i>
-                        </span>
-                    </div>
-                    <div class="text p-3">
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p class="name">Art Leonard</p>
-                        <span class="position">Customer</span>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="testimony-wrap text-center pb-5">
-                    <div class="user-img mb-4" style="background-image: url(/static/images/person_4.jpg)">
-                        <span class="quote d-flex align-items-center justify-content-center">
-                        <i class="icon-quote-left"></i>
-                        </span>
-                    </div>
-                    <div class="text p-3">
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p class="name">Rose Henderson</p>
-                        <span class="position">Customer</span>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="testimony-wrap text-center pb-5">
-                    <div class="user-img mb-4" style="background-image: url(/static/images/person_3.jpg)">
-                        <span class="quote d-flex align-items-center justify-content-center">
-                        <i class="icon-quote-left"></i>
-                        </span>
-                    </div>
-                    <div class="text p-3">
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <p class="name">Ian Boner</p>
-                        <span class="position">Customer</span>
-                    </div>
-                    </div>
-                    </div>
+                    {% endfor %}
                     </div>
                     </div>
                     </div>

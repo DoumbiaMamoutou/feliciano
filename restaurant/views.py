@@ -6,13 +6,14 @@ from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
 	data = {
-		'about':config.AboutConfig.objects.filter(status=True)[:1],
+		'about':config.AboutConfig.objects.filter(status=True)[:1].get(),
 		'service':config.ServiceConfig.objects.filter(status=True),
 		'temoin':config.Temoin.objects.filter(status=True),
 		'contact':config.ContactConfig.objects.filter(status=True),
-		'article_acceuil': art.Article.objects.filter(acceuil=True)[:4],
+		'article_acceuil': restau.Plat.objects.filter(status=True)[:4],
+		'plat':restau.Plat.objects.filter(status=True).order_by('prix')[:6],
 		'chef':restau.Chef.objects.filter(status=True)[:4],
-		'article':art.Article.objects.order_by('-date_add')[:3],
+		'article':art.Article.objects.order_by('-article_comment')[:3],
 	}
 	return render(request, 'pages/index.html', data)
 
@@ -21,28 +22,29 @@ def menu(request):
 	cat = request.GET.get('category',False)
 	cats=restau.Category.objects.filter(status=True)
 	data = {}
+	values = {}
 	for c in cats :
-		data.update({
-			c.titre:c.category_plat.all(),
+		values.update({
+			c.titre:c.category_plat.all().order_by('id'),
 		})
-	for k,d in data.items() :
+	for k,d in values.items() :
 		if cat == k and len(d) is not None:
 			paginator=Paginator(d,6)
 			d = paginator.page(p)
 		elif cat == False and len(d) is not None:
 			paginator=Paginator(d,6)
 			d = paginator.page(p)
-	print(data)
-	data.update({'category':cats,})
+	data.update({'category':cats,'values':values})
 	return render(request, 'pages/menu.html',data)
 
 def about(request):
 	data = {
-		'about':config.AboutConfig.objects.filter(status=True)[:1],
+		'about':config.AboutConfig.objects.filter(status=True)[:1].get(),
 		'service':config.ServiceConfig.objects.filter(status=True),
 		'temoin':config.Temoin.objects.filter(status=True),
 		'chef':restau.Chef.objects.filter(status=True)[:4],
 	}
-	return render(request, 'pages/about.html')
+	print(data['chef'])
+	return render(request, 'pages/about.html',data)
 
 

@@ -28,9 +28,9 @@ class MainConfig(models.Model):
 	def open_hour(self):
 		jour = now().strftime('%A')
 		hour = ''
-		for w in self.working_hour:
-			if re.match(w.jour,jour,re.IGNORECASE):
-				hour = '{} - {}'.format(w.start_hour,w.end_hour)
+		for w in self.working_hour.all():
+			if re.match(str(w.jour),str(jour),re.IGNORECASE):
+				hour = '{} - {}'.format(str(w.start_hour),str(w.end_hour))
 		print(jour,' : ',hour)
 		return '{} : {}'.format(jour,hour)
 
@@ -98,19 +98,17 @@ class Social(models.Model):
 	status = models.BooleanField(default=True)
 	date_add = models.DateTimeField(auto_now_add=True)
 	date_upd = models.DateTimeField(auto_now=True)
-
-
 	@property
 	def font(self):
-		if self.name == 'facebook':
+		if self.name == 'FB':
 			font = 'icon-facebook'
-		elif self.name == 'tiwtter':
+		elif self.name == 'TW':
 			font ='icon-twitter'
-		elif self.name == 'instagram':
+		elif self.name == 'INS':
 			font ='icon-instagram"'
-		elif self.name == 'google':
+		elif self.name == 'GOO':
 			font ='icon-google-plus'
-
+		return font
 	class Meta:
 	    verbose_name = "Social"
 	    verbose_name_plural = "Socials"
@@ -138,6 +136,8 @@ class AboutConfig(models.Model):
 	# TODO: Define fields here
 	titre = models.CharField(max_length=50)
 	content = HTMLField('content')
+	image1= models.ImageField(upload_to='about/config',null=True)
+	image2= models.ImageField(upload_to='about/config',null=True)
 	open_hour = models.CharField(max_length=255)
 	phone = models.CharField(max_length=50)
 	yoe = models.IntegerField()
