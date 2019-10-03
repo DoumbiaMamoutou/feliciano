@@ -36,7 +36,8 @@ def visitor_ip_address(request):
                 continent=continent,
                 reseau=reseau,
                 latitude=latitude,
-                longitude=longitude
+                longitude=longitude,
+                page=request.path,
             )
             client.save()
     except :

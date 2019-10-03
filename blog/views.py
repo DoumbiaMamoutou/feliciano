@@ -104,7 +104,7 @@ def list_tag(request,tag):
 				'articles':arti,
 				'tag':Tag.objects.get(pk=tag)
 			}
-			return render(request, 'pages/list_tagx.html',data)
+			return render(request, 'pages/list_tag.html',data)
 	return redirect('blog')
 def comment(request,id):
 	if request.method == 'POST':

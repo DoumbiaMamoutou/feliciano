@@ -100,14 +100,16 @@ class Social(models.Model):
 	date_upd = models.DateTimeField(auto_now=True)
 	@property
 	def font(self):
+		print(self.name)
 		if self.name == 'FB':
 			font = 'icon-facebook'
 		elif self.name == 'TW':
 			font ='icon-twitter'
 		elif self.name == 'INS':
-			font ='icon-instagram"'
+			font ='icon-instagram'
 		elif self.name == 'GOO':
 			font ='icon-google-plus'
+		print(font)
 		return font
 	class Meta:
 	    verbose_name = "Social"
