@@ -28,9 +28,9 @@ class MainConfig(models.Model):
 	def open_hour(self):
 		jour = now().strftime('%A')
 		hour = ''
-		for w in self.working_hour:
-			if re.match(w.jour,jour,re.IGNORECASE):
-				hour = '{} - {}'.format(w.start_hour,w.end_hour)
+		for w in self.working_hour.all():
+			if re.match(str(w.jour),str(jour),re.IGNORECASE):
+				hour = '{} - {}'.format(str(w.start_hour),str(w.end_hour))
 		print(jour,' : ',hour)
 		return '{} : {}'.format(jour,hour)
 

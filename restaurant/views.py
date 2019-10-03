@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
 	data = {
-		'about':config.AboutConfig.objects.filter(status=True)[:1],
+		'about':config.AboutConfig.objects.filter(status=True)[:1].get(),
 		'service':config.ServiceConfig.objects.filter(status=True),
 		'temoin':config.Temoin.objects.filter(status=True),
 		'contact':config.ContactConfig.objects.filter(status=True),
