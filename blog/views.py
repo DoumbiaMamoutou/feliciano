@@ -3,7 +3,7 @@ from django.conf import settings
 from django.shortcuts import render,redirect
 from .models import *
 from random import randint
-from django_seed import Seed
+# from django.seed import Seed
 from configuration import models as config
 from django.core.paginator import Paginator 
 from . import forms

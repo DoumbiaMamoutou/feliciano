@@ -1,9 +1,8 @@
-from django.contrib import admin
 
 # Register your models here.
 # vim: set fileencoding=utf-8 :
 from django.contrib import admin
-
+from django.utils.safestring import mark_safe
 from . import models
 
 
@@ -25,10 +24,9 @@ class CategoryAdmin(admin.ModelAdmin):
 class PlatAdmin(admin.ModelAdmin):
 
     list_display = (
-        'id',
+        'imagePlat',
         'name',
         'prix',
-        'image',
         'category',
         'status',
         'date_add',
@@ -39,23 +37,23 @@ class PlatAdmin(admin.ModelAdmin):
         'status',
         'date_add',
         'date_upd',
-        'id',
         'prix',
-        'image',
         'category',
         'status',
         'date_add',
         'date_upd',
     )
+    def imagePlat(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
+    
     raw_id_fields = ('ingredient',)
 
 
 class ChefAdmin(admin.ModelAdmin):
 
     list_display = (
-        'id',
+        'imageChef',
         'first_name',
-        'image',
         'poste',
         'status',
         'date_add',
@@ -66,13 +64,13 @@ class ChefAdmin(admin.ModelAdmin):
         'status',
         'date_add',
         'date_upd',
-        'id',
-        'image',
         'poste',
         'status',
         'date_add',
         'date_upd',
     )
+    def imageChef(self, obj):
+        return mark_safe('<img src="{url}" width="100px" heigth="50px" />'.format(url=obj.image.url))
     raw_id_fields = ('social',)
 
 
