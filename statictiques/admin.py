@@ -12,6 +12,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'ip',
+        'page',
         'pays',
         'ville',
         'continent',

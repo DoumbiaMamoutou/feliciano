@@ -88,7 +88,9 @@
               <h2 class="ftco-heading-2">{{ configuration.nom }}</h2>
               <p>{{ configuration.description }}.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="{{ configuration.social.lien }}"><span class="icon-twitter"></span></a></li>
+              {% for s in configuration.social.all %}
+                <li class="ftco-animate"><a href="{{ s.lien }}"><span class="{{ s.font }}"></span></a></li>
+                {% endfor %}
               </ul>
             </div>
             

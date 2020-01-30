@@ -104,11 +104,13 @@ def list_tag(request,tag):
 				'articles':arti,
 				'tag':Tag.objects.get(pk=tag)
 			}
-			return render(request, 'pages/list_tagx.html',data)
+			return render(request, 'pages/list_tag.html',data)
 	return redirect('blog')
-def comment(request):
+def comment(request,id):
 	if request.method == 'POST':
+		print('\r\n===============================\r\n',request.POST,'\r\n==================================\r\n')
 		comment = forms.CommentForm(request.POST)
+		comment.article=id
 		if comment.is_valid:
 			comment.save()
 	return redirect('blog')
